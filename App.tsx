@@ -1,4 +1,6 @@
 import { Dimensions, StyleSheet, View } from 'react-native'
+import { Provider as PaperProvider } from 'react-native-paper'
+import { theme } from './src/themes'
 import { Routes } from './src/routes'
 
 export const windowWidth = Dimensions.get('window').width
@@ -6,9 +8,11 @@ export const windowHeight = Dimensions.get('window').height
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Routes />
-    </View>
+    <PaperProvider theme={theme}>
+      <View style={styles.container}>
+        <Routes />
+      </View>
+    </PaperProvider>
   )
 }
 

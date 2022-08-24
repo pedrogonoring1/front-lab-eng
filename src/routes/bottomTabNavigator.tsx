@@ -2,7 +2,7 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { AntDesign } from '@expo/vector-icons'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
-import { Splash } from '../screens/splash'
+import { Register } from '../screens'
 
 const BottomTab = createMaterialBottomTabNavigator()
 
@@ -35,7 +35,7 @@ const FeedStack = createStackNavigator()
 const HomeNavigator = () => {
   return (
     <FeedStack.Navigator screenOptions={{ headerShown: false }}>
-      <FeedStack.Screen name='Home' component={Splash} />
+      <FeedStack.Screen name='Register' component={Register} />
     </FeedStack.Navigator>
   )
 }

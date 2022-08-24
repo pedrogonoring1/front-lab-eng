@@ -1,14 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es6",
     "module": "commonjs",
+    "baseUrl": "./",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
     "jsx": "react-native",
+    "lib": ["es2017"],
+    "moduleResolution": "node",
     "noEmit": true,
     "strict": true,
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "target": "esnext"
   },
   "exclude": [
     "node_modules",
