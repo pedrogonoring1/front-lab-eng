@@ -7,7 +7,7 @@ export const makeStyles = (fontScale: number) =>
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      width: 315 / fontScale,
+      width: '100%',
       height: 50 / fontScale,
       borderRadius: 30 / fontScale,
       marginBottom: 24 / fontScale,

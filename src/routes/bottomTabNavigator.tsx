@@ -2,7 +2,7 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { AntDesign } from '@expo/vector-icons'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
-import { Register } from '../screens'
+import { Register, RecoverPassword } from '../screens'
 
 const BottomTab = createMaterialBottomTabNavigator()
 
@@ -36,6 +36,7 @@ const HomeNavigator = () => {
   return (
     <FeedStack.Navigator screenOptions={{ headerShown: false }}>
       <FeedStack.Screen name='Register' component={Register} />
+      <FeedStack.Screen name='RecoverPassword' component={RecoverPassword} />
     </FeedStack.Navigator>
   )
 }

@@ -19,7 +19,8 @@ export const Register: React.FC = () => {
 
   const [checked, setChecked] = useState(false)
   const [visibleMenu, setVisibleMenu] = useState(false)
-  const [visibleModal, setVisibleModal] = useState(false)
+  const [visibleTermModal, setVisibleTermModal] = useState(false)
+  const [visibleRegistrationModal, setVisibleRegistrationModal] = useState(false)
   const [adoptionType, setAdoptionType] = useState('')
 
   const selectOng = () => {
@@ -35,7 +36,7 @@ export const Register: React.FC = () => {
   const register = () => {
     if (!checked) return
 
-    console.log('Cadastrado')
+    setVisibleRegistrationModal(!visibleRegistrationModal)
   }
 
   return (
@@ -83,32 +84,52 @@ export const Register: React.FC = () => {
 
           <Text style={styles.termsText}>Eu li e aceito os </Text>
 
-          <Pressable onPress={() => setVisibleModal(!visibleModal)}>
+          <Pressable onPress={() => setVisibleTermModal(!visibleTermModal)}>
             <Text style={styles.linkText}>termos e condições.</Text>
           </Pressable>
 
           <Portal>
             <Modal
-              visible={visibleModal}
-              onDismiss={() => setVisibleModal(!visibleModal)}
-              contentContainerStyle={styles.modalContainer}
+              visible={visibleTermModal}
+              onDismiss={() => setVisibleTermModal(!visibleTermModal)}
+              contentContainerStyle={styles.termModalContainer}
             >
-              <Text style={styles.modalTitle}>Termos e condições</Text>
-              <Text style={styles.modalDescription}>
+              <Text style={styles.termModalTitle}>Termos e condições</Text>
+              <Text style={styles.termModalDescription}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                 ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                 fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                 deserunt mollit anim id est laborum.
               </Text>
-              <Pressable onPress={() => setVisibleModal(!visibleModal)} style={styles.modalButton}>
-                <Text style={styles.modalButtonText}>Ok</Text>
+              <Pressable onPress={() => setVisibleTermModal(!visibleTermModal)} style={styles.termModalButton}>
+                <Text style={styles.termModalButtonText}>Ok</Text>
               </Pressable>
             </Modal>
           </Portal>
         </View>
+
         <View style={styles.buttonContainer}>
           <RegisterButton text='Cadastrar' screen={() => register()} />
+
+          <Portal>
+            <Modal
+              visible={visibleRegistrationModal}
+              onDismiss={() => setVisibleRegistrationModal(!visibleRegistrationModal)}
+              contentContainerStyle={styles.registrationModalContainer}
+            >
+              <Text style={styles.registrationModalTitle}>Sucesso!</Text>
+              <Text style={styles.registrationModalDescription}>
+                Agora é só aguardar. Entraremos em contato por email assim que seu cadastro for concluído.
+              </Text>
+              <Pressable
+                onPress={() => setVisibleRegistrationModal(!visibleRegistrationModal)}
+                style={styles.registrationModalButton}
+              >
+                <Text style={styles.registrationModalButtonText}>Ok</Text>
+              </Pressable>
+            </Modal>
+          </Portal>
         </View>
       </View>
     </View>

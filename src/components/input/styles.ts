@@ -3,7 +3,7 @@ import { color } from '../../themes/color'
 
 export const makeStyles = (fontScale: number) =>
   StyleSheet.create({
-    button: {
+    input: {
       width: '100%',
       height: 50 / fontScale,
       borderRadius: 30 / fontScale,
