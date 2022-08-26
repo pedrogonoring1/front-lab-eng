@@ -10,6 +10,7 @@ export type RootStackParamList = {
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
+console.log('oi')
 
 export const Routes = () => {
   return (
