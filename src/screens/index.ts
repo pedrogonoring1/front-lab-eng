@@ -1,1 +1,2 @@
-export { Splash } from './splash'
+export { Register } from './register'
+export { RecoverPassword } from './recoverPassword'
