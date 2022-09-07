@@ -5,7 +5,7 @@ export const makeStyles = (fontScale: number) =>
   StyleSheet.create({
     input: {
       width: '100%',
-      height: 50 / fontScale,
+      height: 55 / fontScale,
       borderRadius: 30 / fontScale,
       backgroundColor: color.lightWhite,
       padding: 15 / fontScale,
