@@ -1,2 +1,2 @@
-export { Register } from './register'
-export { RecoverPassword } from './recoverPassword'
+export { Register } from './register';
+export { RecoverPassword } from './recoverPassword';

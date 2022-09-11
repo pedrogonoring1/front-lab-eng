@@ -1,11 +1,11 @@
-import { StyleSheet } from 'react-native'
-import { color } from '../../themes/color'
+import { StyleSheet } from 'react-native';
+import { color } from '../../themes/color';
 
 export const makeStyles = (fontScale: number) =>
   StyleSheet.create({
     input: {
       width: '100%',
-      height: 50 / fontScale,
+      height: 55 / fontScale,
       borderRadius: 30 / fontScale,
       backgroundColor: color.lightWhite,
       padding: 15 / fontScale,
@@ -15,4 +15,4 @@ export const makeStyles = (fontScale: number) =>
       fontWeight: '500',
       letterSpacing: -0.2 / fontScale,
     },
-  })
+  });

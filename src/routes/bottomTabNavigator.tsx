@@ -1,10 +1,10 @@
-import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
-import { AntDesign } from '@expo/vector-icons'
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
-import { Register, RecoverPassword } from '../screens'
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import { AntDesign } from '@expo/vector-icons';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { Register, RecoverPassword } from '../screens';
 
-const BottomTab = createMaterialBottomTabNavigator()
+const BottomTab = createMaterialBottomTabNavigator();
 
 const BottomTabNavigator: React.FC = () => {
   return (
@@ -23,14 +23,14 @@ const BottomTabNavigator: React.FC = () => {
         }}
       />
     </BottomTab.Navigator>
-  )
-}
+  );
+};
 
 const TabBarIcon = () => {
-  return <AntDesign size={26} color={'#53B175'} />
-}
+  return <AntDesign size={26} color={'#53B175'} />;
+};
 
-const FeedStack = createStackNavigator()
+const FeedStack = createStackNavigator();
 
 const HomeNavigator = () => {
   return (
@@ -38,7 +38,7 @@ const HomeNavigator = () => {
       <FeedStack.Screen name='Register' component={Register} />
       <FeedStack.Screen name='RecoverPassword' component={RecoverPassword} />
     </FeedStack.Navigator>
-  )
-}
+  );
+};
 
-export default BottomTabNavigator
+export default BottomTabNavigator;
