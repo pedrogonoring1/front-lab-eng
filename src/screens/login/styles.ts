@@ -3,44 +3,54 @@ import { color } from '../../themes/color';
 
 export const makeStyles = (fontScale: number) =>
   StyleSheet.create({
-    wrapper: {
+    title: {
+      display: 'flex',
+      alignSelf: 'center',
+      fontSize: 30 / fontScale,
+      fontWeight: 'bold',
+      color: color.purple,
+    },
+    body: {
       display: 'flex',
       flex: 1,
       height: '100%',
       backgroundColor: color.beige,
     },
-    bottomContainer: {
+    logo: {
+      marginBottom: 30 / fontScale,
+    },
+    loginButton: {
+      justifyContent: 'flex-end',
+      width: 350 / fontScale,
+    },
+    text: {
       display: 'flex',
-      justifyContent: 'space-evenly',
+      alignSelf: 'center',
+      fontSize: 15 / fontScale,
+      fontWeight: 'bold',
+      color: '#47456D',
+    },
+    container: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginHorizontal: 22 / fontScale,
+      flex: 0.165,
+    },
+    topContainer: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
       marginHorizontal: 27 / fontScale,
       flex: 0.4,
     },
-    buttonContainer: {
+    bottomContainer: {
       display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-end',
-    },
-    topContainer: {
-      flex: 0.13,
-      display: 'flex',
-      marginHorizontal: 27 / fontScale,
-      justifyContent: 'flex-end',
-    },
-    returnButton: {
-      display: 'flex',
-      alignItems: 'center',
       justifyContent: 'center',
-      paddingLeft: 10 / fontScale,
-      backgroundColor: color.purple,
-      width: 50 / fontScale,
-      height: 50 / fontScale,
-      borderRadius: 100 / fontScale,
+      alignItems: 'center',
+      marginHorizontal: 27 / fontScale,
+      flex: 0.4,
     },
-    elevation: {
-      elevation: 20,
-      shadowColor: '#52006A',
-    },
-    modalContainer: {
+    successModalContainer: {
       display: 'flex',
       alignItems: 'center',
       alignSelf: 'center',
@@ -51,7 +61,7 @@ export const makeStyles = (fontScale: number) =>
       backgroundColor: color.beige,
       paddingHorizontal: 30 / fontScale,
     },
-    modalTitle: {
+    successModalTitle: {
       color: color.purple,
       fontSize: 20 / fontScale,
       lineHeight: 24 / fontScale,
@@ -59,14 +69,14 @@ export const makeStyles = (fontScale: number) =>
       textAlign: 'center',
       marginTop: 15 / fontScale,
     },
-    modalDescription: {
+    successModalDescription: {
       color: color.purple,
       fontSize: 20 / fontScale,
       lineHeight: 24 / fontScale,
       fontWeight: '400',
       textAlign: 'center',
     },
-    modalButton: {
+    successModalButton: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -76,34 +86,11 @@ export const makeStyles = (fontScale: number) =>
       marginBottom: 24 / fontScale,
       backgroundColor: color.purple,
     },
-    modalButtonText: {
+    successModalButtonText: {
       fontSize: 20 / fontScale,
       lineHeight: 30 / fontScale,
       fontWeight: '500',
       letterSpacing: 0.6 / fontScale,
       color: 'white',
-    },
-    container: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      flex: 0.27,
-    },
-    title: {
-      marginTop: 20 / fontScale,
-      color: color.purple,
-      fontSize: 36 / fontScale,
-      lineHeight: 43.2 / fontScale,
-      fontWeight: '500',
-      letterSpacing: -1 / fontScale,
-    },
-    description: {
-      alignSelf: 'center',
-      color: color.purple,
-      fontSize: 20 / fontScale,
-      lineHeight: 30 / fontScale,
-      letterSpacing: 0.6 / fontScale,
-      fontWeight: '500',
-      textAlign: 'center',
     },
   });
