@@ -19,7 +19,6 @@ export const makeStyles = (fontScale: number) =>
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'flex-end',
-      marginHorizontal: 27 / fontScale,
     },
     topContainer: {
       flex: 0.13,

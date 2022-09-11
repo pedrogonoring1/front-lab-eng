@@ -6,7 +6,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../routes';
 import { Button as RegisterButton } from '../../components/button';
 import { Input } from '../../components/input';
-import { Button, Portal, Modal } from 'react-native-paper';
+import { Button, Portal, Modal, Snackbar } from 'react-native-paper';
 import { color } from '../../themes';
 
 type revocerPasswordScreenProp = StackNavigationProp<RootStackParamList>;
@@ -18,13 +18,37 @@ export const RecoverPassword: React.FC = () => {
   const styles = makeStyles(fontScale);
 
   const [visibleModal, setVisibleModal] = useState(false);
+  const [isSnackbarVisible, setIsSnackBarVisible] = useState(false);
+  const [snackBarText, setSnackbarText] = useState('');
 
   const [email, setEmail] = useState('');
 
+  const recoverPassword = async () => {
+    if (!email) {
+      setIsSnackBarVisible(!isSnackbarVisible);
+      setSnackbarText('Preencha todos os campos');
+      return;
+    }
+
+    setVisibleModal(!visibleModal);
+  };
+
   return (
     <View style={styles.wrapper}>
+      <Snackbar
+        visible={isSnackbarVisible}
+        onDismiss={() => setIsSnackBarVisible(!isSnackbarVisible)}
+        action={{
+          label: 'Fechar',
+        }}
+        style={{ backgroundColor: 'red' }}
+        wrapperStyle={{ zIndex: 1 }}
+      >
+        {snackBarText}
+      </Snackbar>
+
       <View style={styles.topContainer}>
-        <Pressable style={[styles.returnButton, styles.elevation]}>
+        <Pressable style={[styles.returnButton, styles.elevation]} onPress={() => navigation.goBack()}>
           <Button labelStyle={{ color: color.lightWhite, fontSize: 30 }} icon='chevron-left' children />
         </Pressable>
       </View>
@@ -40,7 +64,7 @@ export const RecoverPassword: React.FC = () => {
         <Input placeholder='Email' onChange={setEmail} />
 
         <View style={styles.buttonContainer}>
-          <RegisterButton text='Enviar' screen={() => setVisibleModal(!visibleModal)} />
+          <RegisterButton text='Enviar' onPress={() => recoverPassword()} />
 
           <Portal>
             <Modal

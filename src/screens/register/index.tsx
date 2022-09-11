@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { useWindowDimensions, View, Text, Pressable, Alert } from 'react-native';
-import { makeStyles } from './styles';
+import { useWindowDimensions, View, Text, Pressable } from 'react-native';
+import { Checkbox, Button, Menu, Portal, Modal, Snackbar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+
 import { RootStackParamList } from '../../routes';
 import { Button as RegisterButton } from '../../components/button';
 import { Input } from '../../components/input';
-import { Checkbox, Button, Menu, Portal, Modal, Snackbar } from 'react-native-paper';
+import { makeStyles } from './styles';
 import { color } from '../../themes';
 import { api } from '../../services/api';
 
@@ -79,7 +80,6 @@ export const Register: React.FC = () => {
       setVisibleRegistrationModal(!visibleRegistrationModal);
     } catch (e: any) {
       if (e.response.data) {
-        console.log(e.response.data.error.detail);
         setIsSnackBarVisible(!isSnackbarVisible);
         setSnackbarText(
           e.response.data.error.detail === 'Internal Server Error'
@@ -92,8 +92,20 @@ export const Register: React.FC = () => {
 
   return (
     <View style={styles.wrapper}>
+      <Snackbar
+        visible={isSnackbarVisible}
+        onDismiss={() => setIsSnackBarVisible(!isSnackbarVisible)}
+        action={{
+          label: 'Fechar',
+        }}
+        style={{ backgroundColor: 'red' }}
+        wrapperStyle={{ zIndex: 1 }}
+      >
+        {snackBarText}
+      </Snackbar>
+
       <View style={styles.topContainer}>
-        <Pressable style={[styles.returnButton, styles.elevation]}>
+        <Pressable style={[styles.returnButton, styles.elevation]} onPress={() => navigation.goBack()}>
           <Button labelStyle={{ color: color.lightWhite, fontSize: 30 }} icon='chevron-left' children />
         </Pressable>
       </View>
@@ -161,7 +173,7 @@ export const Register: React.FC = () => {
         </View>
 
         <View style={styles.buttonContainer}>
-          <RegisterButton text='Cadastrar' screen={() => register()} />
+          <RegisterButton text='Cadastrar' onPress={() => register()} />
 
           <Portal>
             <Modal
@@ -181,18 +193,6 @@ export const Register: React.FC = () => {
               </Pressable>
             </Modal>
           </Portal>
-
-          <Snackbar
-            visible={isSnackbarVisible}
-            onDismiss={() => setIsSnackBarVisible(!isSnackbarVisible)}
-            action={{
-              label: 'Fechar',
-            }}
-            style={{ backgroundColor: 'red' }}
-            wrapperStyle={{ width: '120%' }}
-          >
-            {snackBarText}
-          </Snackbar>
         </View>
       </View>
     </View>

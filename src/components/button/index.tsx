@@ -4,16 +4,16 @@ import { Pressable, useWindowDimensions } from 'react-native';
 import { makeStyles } from './styles';
 
 export interface ButtonProps {
-  screen?: () => void;
+  onPress?: () => void;
   text: string;
 }
 
-export const Button: React.FC<ButtonProps> = ({ screen, text }) => {
+export const Button: React.FC<ButtonProps> = ({ onPress, text }) => {
   const { fontScale } = useWindowDimensions();
   const styles = makeStyles(fontScale);
 
-  return screen ? (
-    <Pressable onPress={screen} style={styles.button}>
+  return onPress ? (
+    <Pressable onPress={onPress} style={styles.button}>
       <Text style={styles.buttonText}>{text}</Text>
     </Pressable>
   ) : (
