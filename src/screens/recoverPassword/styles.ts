@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native'
-import { color } from '../../themes/color'
+import { StyleSheet } from 'react-native';
+import { color } from '../../themes/color';
 
 export const makeStyles = (fontScale: number) =>
   StyleSheet.create({
@@ -107,4 +107,4 @@ export const makeStyles = (fontScale: number) =>
       fontWeight: '500',
       textAlign: 'center',
     },
-  })
+  });

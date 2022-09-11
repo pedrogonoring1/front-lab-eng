@@ -1,89 +1,100 @@
-import React, { useState } from 'react'
-import { useWindowDimensions, View, Text, Pressable, Alert } from 'react-native'
-import { makeStyles } from './styles'
-import { useNavigation } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
-import { RootStackParamList } from '../../routes'
-import { Button as RegisterButton } from '../../components/button'
-import { Input } from '../../components/input'
-import { Checkbox, Button, Menu, Portal, Modal } from 'react-native-paper'
-import { color } from '../../themes'
-import { userCreate } from '../../services'
-import { api } from '../../services/api'
-import axios from 'axios'
+import React, { useState } from 'react';
+import { useWindowDimensions, View, Text, Pressable, Alert } from 'react-native';
+import { makeStyles } from './styles';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../routes';
+import { Button as RegisterButton } from '../../components/button';
+import { Input } from '../../components/input';
+import { Checkbox, Button, Menu, Portal, Modal, Snackbar } from 'react-native-paper';
+import { color } from '../../themes';
+import { api } from '../../services/api';
 
-type registerScreenProp = StackNavigationProp<RootStackParamList>
+type registerScreenProp = StackNavigationProp<RootStackParamList>;
 
 export const Register: React.FC = () => {
-  const navigation = useNavigation<registerScreenProp>()
+  const navigation = useNavigation<registerScreenProp>();
 
-  const { fontScale } = useWindowDimensions()
-  const styles = makeStyles(fontScale)
+  const { fontScale } = useWindowDimensions();
+  const styles = makeStyles(fontScale);
 
-  const [checked, setChecked] = useState(false)
-  const [visibleMenu, setVisibleMenu] = useState(false)
-  const [visibleTermModal, setVisibleTermModal] = useState(false)
-  const [visibleRegistrationModal, setVisibleRegistrationModal] = useState(false)
-  const [adoptionType, setAdoptionType] = useState('')
-  const [isAdopter, setIsAdopter] = useState(false)
+  const [checked, setChecked] = useState(false);
+  const [visibleMenu, setVisibleMenu] = useState(false);
+  const [visibleTermModal, setVisibleTermModal] = useState(false);
+  const [visibleRegistrationModal, setVisibleRegistrationModal] = useState(false);
+  const [isSnackbarVisible, setIsSnackBarVisible] = useState(false);
+  const [snackBarText, setSnackbarText] = useState('');
+  const [adoptionType, setAdoptionType] = useState('');
 
-  const [name, setName] = useState('')
-  const [cpfOrCnpj, setcpfOrCnpj] = useState('')
-  const [cep, setCep] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [phone, setPhone] = useState('')
+  const [isAdopter, setIsAdopter] = useState(true);
+  const [name, setName] = useState('');
+  const [cpfOrCnpj, setcpfOrCnpj] = useState('');
+  const [cep, setCep] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
+  const [birthDate, setBirthDate] = useState('');
 
   const selectOng = () => {
-    setIsAdopter(false)
-    setAdoptionType('Sou ONG')
-    setVisibleMenu(!visibleMenu)
-  }
+    setIsAdopter(false);
+    setAdoptionType('Sou ONG');
+    setVisibleMenu(!visibleMenu);
+  };
 
   const selectAdopter = () => {
-    setIsAdopter(true)
-    setAdoptionType('Sou adotador')
-    setVisibleMenu(!visibleMenu)
-  }
+    setIsAdopter(true);
+    setAdoptionType('Sou adotador');
+    setVisibleMenu(!visibleMenu);
+  };
 
   const register = async () => {
-    if (!checked) return
-    if (!name || !isAdopter || !cpfOrCnpj || !cep || !email || !password || !phone) return
+    if (!name || !cpfOrCnpj || !cep || !email || !password || !phone) {
+      setIsSnackBarVisible(!isSnackbarVisible);
+      setSnackbarText('Preencha todos os campos');
+      return;
+    }
+
+    if (!checked) {
+      setIsSnackBarVisible(!isSnackbarVisible);
+      setSnackbarText('Termos e condições não aceitos');
+      return;
+    }
 
     const data = {
       data: {
         name,
         adm: false,
         adopter: isAdopter,
+        birthDate,
         cpfOrCnpj,
         cep,
         email,
         password,
         phone,
       },
-    }
+    };
 
     try {
-      const user = await axios.post(`http://localhost:3003/user/create`, { data })
-      console.log('ys', user)
-    } catch (e) {
-      console.log('catch')
-      Alert
+      await api.post(`/user/create`, data);
+      setVisibleRegistrationModal(!visibleRegistrationModal);
+    } catch (e: any) {
+      if (e.response.data) {
+        console.log(e.response.data.error.detail);
+        setIsSnackBarVisible(!isSnackbarVisible);
+        setSnackbarText(
+          e.response.data.error.detail === 'Internal Server Error'
+            ? 'Cadastro não foi concluído'
+            : e.response.data.error.detail
+        );
+      }
     }
-
-    setVisibleRegistrationModal(!visibleRegistrationModal)
-  }
+  };
 
   return (
     <View style={styles.wrapper}>
       <View style={styles.topContainer}>
         <Pressable style={[styles.returnButton, styles.elevation]}>
-          <Button
-            labelStyle={{ color: color.lightWhite, fontSize: 30 }}
-            icon='chevron-left'
-            buttonColor='transparent'
-            children
-          />
+          <Button labelStyle={{ color: color.lightWhite, fontSize: 30 }} icon='chevron-left' children />
         </Pressable>
       </View>
 
@@ -103,9 +114,14 @@ export const Register: React.FC = () => {
         </Menu>
 
         <Input placeholder='Nome' onChange={setName} />
-        <Input placeholder='Telefone ou celular' onChange={setPhone} />
-        <Input placeholder='CNPJ/CPF' onChange={setcpfOrCnpj} />
-        <Input placeholder='CEP' onChange={setCep} />
+        <Input placeholder='Data de nascimento' onChange={setBirthDate} hide={!isAdopter} birthDate />
+        <Input placeholder='Telefone ou celular' onChange={setPhone} phone />
+        <Input
+          placeholder={isAdopter ? 'CPF' : 'CNPJ'}
+          onChange={setcpfOrCnpj}
+          cpfOrCnpj={isAdopter ? 'CPF' : 'CNPJ'}
+        />
+        <Input placeholder='CEP' onChange={setCep} cep />
         <Input placeholder='E-mail' onChange={setEmail} />
         <Input placeholder='Senha' onChange={setPassword} password />
 
@@ -113,7 +129,7 @@ export const Register: React.FC = () => {
           <Checkbox
             status={checked ? 'checked' : 'unchecked'}
             onPress={() => {
-              setChecked(!checked)
+              setChecked(!checked);
             }}
           />
 
@@ -165,8 +181,20 @@ export const Register: React.FC = () => {
               </Pressable>
             </Modal>
           </Portal>
+
+          <Snackbar
+            visible={isSnackbarVisible}
+            onDismiss={() => setIsSnackBarVisible(!isSnackbarVisible)}
+            action={{
+              label: 'Fechar',
+            }}
+            style={{ backgroundColor: 'red' }}
+            wrapperStyle={{ width: '120%' }}
+          >
+            {snackBarText}
+          </Snackbar>
         </View>
       </View>
     </View>
-  )
-}
+  );
+};

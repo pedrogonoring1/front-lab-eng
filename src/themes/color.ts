@@ -4,4 +4,4 @@ export const color = {
   lightWhite: '#F3F5F7',
   ofuscatedBlack: '#000000B2',
   grey: '#C7C7CD',
-}
+};

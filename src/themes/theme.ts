@@ -1,5 +1,5 @@
-import { DefaultTheme } from 'react-native-paper'
-import { color } from './color'
+import { DefaultTheme } from 'react-native-paper';
+import { color } from './color';
 
 export const theme = {
   ...DefaultTheme,
@@ -7,4 +7,4 @@ export const theme = {
     ...DefaultTheme.colors,
     primary: color.purple,
   },
-}
+};

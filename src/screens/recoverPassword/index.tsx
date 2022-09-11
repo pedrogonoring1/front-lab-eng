@@ -1,46 +1,43 @@
-import React, { useState } from 'react'
-import { useWindowDimensions, View, Text, Pressable, Image } from 'react-native'
-import { makeStyles } from './styles'
-import { useNavigation } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
-import { RootStackParamList } from '../../routes'
-import { Button as RegisterButton } from '../../components/button'
-import { Input } from '../../components/input'
-import { Button, Portal, Modal } from 'react-native-paper'
-import { color } from '../../themes'
+import React, { useState } from 'react';
+import { useWindowDimensions, View, Text, Pressable, Image } from 'react-native';
+import { makeStyles } from './styles';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../routes';
+import { Button as RegisterButton } from '../../components/button';
+import { Input } from '../../components/input';
+import { Button, Portal, Modal } from 'react-native-paper';
+import { color } from '../../themes';
 
-type revocerPasswordScreenProp = StackNavigationProp<RootStackParamList>
+type revocerPasswordScreenProp = StackNavigationProp<RootStackParamList>;
 
 export const RecoverPassword: React.FC = () => {
-  const navigation = useNavigation<revocerPasswordScreenProp>()
+  const navigation = useNavigation<revocerPasswordScreenProp>();
 
-  const { fontScale } = useWindowDimensions()
-  const styles = makeStyles(fontScale)
+  const { fontScale } = useWindowDimensions();
+  const styles = makeStyles(fontScale);
 
-  const [visibleModal, setVisibleModal] = useState(false)
+  const [visibleModal, setVisibleModal] = useState(false);
+
+  const [email, setEmail] = useState('');
 
   return (
     <View style={styles.wrapper}>
       <View style={styles.topContainer}>
         <Pressable style={[styles.returnButton, styles.elevation]}>
-          <Button
-            labelStyle={{ color: color.lightWhite, fontSize: 30 }}
-            icon='chevron-left'
-            buttonColor='transparent'
-            children
-          />
+          <Button labelStyle={{ color: color.lightWhite, fontSize: 30 }} icon='chevron-left' children />
         </Pressable>
       </View>
 
       <View style={styles.container}>
-        <Image source={require('../../utils/images/Vector.png')} />
+        <Image source={require('../../assets/Vector.png')} />
         <Text style={styles.title}>Dogs Adoption</Text>
       </View>
 
       <View style={styles.bottomContainer}>
         <Text style={styles.description}>Digite seu e-mail cadastrado para receber uma nova senha.</Text>
 
-        <Input placeholder='Email' />
+        <Input placeholder='Email' onChange={setEmail} />
 
         <View style={styles.buttonContainer}>
           <RegisterButton text='Enviar' screen={() => setVisibleModal(!visibleModal)} />
@@ -64,5 +61,5 @@ export const RecoverPassword: React.FC = () => {
         </View>
       </View>
     </View>
-  )
-}
+  );
+};
