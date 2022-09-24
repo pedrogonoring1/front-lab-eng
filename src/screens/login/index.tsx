@@ -102,7 +102,7 @@ export const Login: React.FC = () => {
             >
               <Text style={styles.successModalTitle}>Sucesso!</Text>
               <Text style={styles.successModalDescription}>Login realizado com sucesso.</Text>
-              <Pressable onPress={() => setVisibleSuccessModal(!visibleSuccessModal)} style={styles.successModalButton}>
+              <Pressable onPress={() => { setVisibleSuccessModal(!visibleSuccessModal); navigation.navigate('DashboardAdotador')}} style={styles.successModalButton}>
                 <Text style={styles.successModalButtonText}>Ok</Text>
               </Pressable>
             </Modal>
