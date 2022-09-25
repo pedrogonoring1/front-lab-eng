@@ -22,6 +22,7 @@ export const Login: React.FC = () => {
   const [visibleSuccessModal, setVisibleSuccessModal] = useState(false);
   const [isSnackbarVisible, setIsSnackBarVisible] = useState(false);
   const [snackBarText, setSnackbarText] = useState('');
+  const [userLogin, setUserLogin] = useState(Object);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -39,7 +40,8 @@ export const Login: React.FC = () => {
     };
 
     try {
-      await api.post(`/user/login`, data);
+      const user = await api.post(`/user/login`, data);
+      setUserLogin(user.data.data);
       setVisibleSuccessModal(!visibleSuccessModal);
     } catch (e: any) {
       if (e.response.data) {
@@ -56,6 +58,15 @@ export const Login: React.FC = () => {
       }
     }
   };
+
+  const redirecionarDashboard = () => {
+    if(userLogin.adopter == true) {
+      navigation.navigate('DashboardAdotador')
+    }
+    else {
+      navigation.navigate('Login')
+    }
+  }
 
   return (
     <View style={styles.body}>
@@ -91,7 +102,7 @@ export const Login: React.FC = () => {
           </Pressable>
 
           <Pressable onPress={() => navigation.navigate('RecoverPassword')}>
-            <Text style={[styles.text, { marginTop: 160 }]}>Esqueceu a senha?</Text>
+            <Text style={[styles.text, { marginTop: 100 }]}>Esqueceu a senha?</Text>
           </Pressable>
 
           <Portal>
@@ -102,7 +113,7 @@ export const Login: React.FC = () => {
             >
               <Text style={styles.successModalTitle}>Sucesso!</Text>
               <Text style={styles.successModalDescription}>Login realizado com sucesso.</Text>
-              <Pressable onPress={() => { setVisibleSuccessModal(!visibleSuccessModal); navigation.navigate('DashboardAdotador')}} style={styles.successModalButton}>
+              <Pressable onPress={() => { setVisibleSuccessModal(!visibleSuccessModal); redirecionarDashboard()}} style={styles.successModalButton}>
                 <Text style={styles.successModalButtonText}>Ok</Text>
               </Pressable>
             </Modal>

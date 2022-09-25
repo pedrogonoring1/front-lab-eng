@@ -1,4 +1,5 @@
 export { Register } from './register'
 export { RecoverPassword } from './recoverPassword'
+export { RecoverPasswordFinish } from './recoverPasswordFinish'
 export { Login } from './login'
 export { DashboardAdotador  } from './dashboardAdotador'

@@ -1,12 +1,13 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { Register, RecoverPassword, Login, DashboardAdotador } from '../screens'
+import { Register, RecoverPassword, Login, DashboardAdotador, RecoverPasswordFinish} from '../screens'
 
 export type RootStackParamList = {
   Login: undefined
   Register: undefined
-  RecoverPassword: undefined
+  RecoverPassword: undefined,
+  RecoverPasswordFinish: {email: string},
   DashboardAdotador: undefined
 }
 
@@ -19,8 +20,8 @@ export const Routes = () => {
         <Stack.Screen name='Login' component={Login} />
         <Stack.Screen name='Register' component={Register} />
         <Stack.Screen name='RecoverPassword' component={RecoverPassword} />
+        <Stack.Screen name='RecoverPasswordFinish' component={RecoverPasswordFinish} />
         <Stack.Screen name='DashboardAdotador' component={DashboardAdotador} />
-
       </Stack.Navigator>
     </NavigationContainer>
   );

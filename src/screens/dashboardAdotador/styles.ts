@@ -6,10 +6,11 @@ export const makeStyles = (fontScale: number) =>
     title: {
       display: 'flex',
       alignSelf: 'center',
-      fontSize: 18 / fontScale,
+      fontSize: 20 / fontScale,
       fontWeight: 'bold',
       color: color.purple,
-      marginTop: 40
+      marginTop: 10,
+      marginBottom: 15
     },
     body: {
       display: 'flex',
@@ -17,12 +18,29 @@ export const makeStyles = (fontScale: number) =>
       height: '100%',
       backgroundColor: color.beige,
     },
-    logo: {
-      marginBottom: 30 / fontScale,
+    areaPading: {
+      padding: 30,
     },
-    loginButton: {
-      justifyContent: 'flex-end',
-      width: 350 / fontScale,
+    picture: {
+      width: 80,
+      height: 80,
+      borderRadius: 15,
+    },
+    inputPesquisar: {
+      marginTop: 15,
+      marginBottom: 15,
+    },
+    viewListaOngs: {
+      marginTop: 15,
+      marginBottom: 20,
+      flexDirection:'row'
+    },
+    viewInfoOngs: {
+      padding: 18
+    },
+    textNomeOng: {
+      fontWeight: 'bold',
+      fontSize: 16
     },
     text: {
       display: 'flex',
