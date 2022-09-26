@@ -36,7 +36,8 @@ export const makeStyles = (fontScale: number) =>
       flexDirection:'row'
     },
     viewInfoOngs: {
-      padding: 18
+      paddingLeft: 10,
+      paddingTop: 25,
     },
     textNomeOng: {
       fontWeight: 'bold',
