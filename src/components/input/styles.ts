@@ -14,5 +14,6 @@ export const makeStyles = (fontScale: number) =>
       lineHeight: 30 / fontScale,
       fontWeight: '500',
       letterSpacing: -0.2 / fontScale,
+      marginBottom: 10,
     },
   });
