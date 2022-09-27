@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AntDesign } from '@expo/vector-icons';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { Register, RecoverPassword } from '../screens';
+import { Register, RecoverPassword, DogDetails } from '../screens';
 
 const BottomTab = createMaterialBottomTabNavigator();
 
