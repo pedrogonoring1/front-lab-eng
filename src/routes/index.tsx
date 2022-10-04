@@ -9,6 +9,7 @@ import {
   RecoverPasswordFinish,
   DashboardAdotador,
   DogDetails,
+  EditarCachorro
 } from '../screens';
 
 export type RootStackParamList = {
@@ -19,6 +20,7 @@ export type RootStackParamList = {
   RecoverPasswordFinish: { email: string };
   DashboardAdotador: undefined;
   DogDetails: undefined;
+  EditarCachorro: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -33,6 +35,7 @@ export const Routes = () => {
         <Stack.Screen name='RecoverPassword' component={RecoverPassword} />
         <Stack.Screen name='RecoverPasswordFinish' component={RecoverPasswordFinish} />
         <Stack.Screen name='DashboardAdotador' component={DashboardAdotador} />
+        <Stack.Screen name='EditarCachorro' component={EditarCachorro} />
         <Stack.Screen name='DogDetails' component={DogDetails} />
       </Stack.Navigator>
     </NavigationContainer>

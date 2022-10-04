@@ -88,7 +88,7 @@ export const DashboardAdotador: React.FC = () => {
                         <View key={index} style={styles.viewListaOngs}>
                             <Image source={{uri: abrigoConsulta[index].picture}} style={styles.picture} />
                             <View style={styles.viewInfoOngs}>
-                                <Text style={styles.textNomeOng}>{abrigoConsulta[index].name}</Text>
+                                <Text style={styles.textNomeOng}>{abrigoConsulta[index].name}</Text> 
                             </View>
                         </View>
                     )
