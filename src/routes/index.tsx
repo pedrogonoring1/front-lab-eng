@@ -1,17 +1,27 @@
-import React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { Register, RecoverPassword, Login, Loading, DashboardAdotador, RecoverPasswordFinish, EditarCachorro } from '../screens'
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {
+  Register,
+  RecoverPassword,
+  Login,
+  Loading,
+  RecoverPasswordFinish,
+  DashboardAdotador,
+  DogDetails,
+  EditarCachorro
+} from '../screens';
 
 export type RootStackParamList = {
-  Loading: undefined
-  Login: undefined
-  Register: undefined
-  RecoverPassword: undefined,
-  RecoverPasswordFinish: {email: string},
-  DashboardAdotador: undefined,
-  EditarCachorro: undefined,
-}
+  Loading: undefined;
+  Login: undefined;
+  Register: undefined;
+  RecoverPassword: undefined;
+  RecoverPasswordFinish: { email: string };
+  DashboardAdotador: undefined;
+  DogDetails: undefined;
+  EditarCachorro: undefined;
+};
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -26,6 +36,7 @@ export const Routes = () => {
         <Stack.Screen name='RecoverPasswordFinish' component={RecoverPasswordFinish} />
         <Stack.Screen name='DashboardAdotador' component={DashboardAdotador} />
         <Stack.Screen name='EditarCachorro' component={EditarCachorro} />
+        <Stack.Screen name='DogDetails' component={DogDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );
