@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { Register, RecoverPassword, Login, Loading, DashboardAdotador, RecoverPasswordFinish } from '../screens'
+import { Register, RecoverPassword, Login, Loading, DashboardAdotador, RecoverPasswordFinish, EditarCachorro } from '../screens'
 
 export type RootStackParamList = {
   Loading: undefined
@@ -9,7 +9,8 @@ export type RootStackParamList = {
   Register: undefined
   RecoverPassword: undefined,
   RecoverPasswordFinish: {email: string},
-  DashboardAdotador: undefined
+  DashboardAdotador: undefined,
+  EditarCachorro: undefined,
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -24,6 +25,7 @@ export const Routes = () => {
         <Stack.Screen name='RecoverPassword' component={RecoverPassword} />
         <Stack.Screen name='RecoverPasswordFinish' component={RecoverPasswordFinish} />
         <Stack.Screen name='DashboardAdotador' component={DashboardAdotador} />
+        <Stack.Screen name='EditarCachorro' component={EditarCachorro} />
       </Stack.Navigator>
     </NavigationContainer>
   );

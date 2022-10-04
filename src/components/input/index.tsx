@@ -13,6 +13,7 @@ export interface InputProps {
   cpfOrCnpj?: string;
   birthDate?: boolean;
   phone?: boolean;
+  valueText?: string;
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -24,6 +25,7 @@ export const Input: React.FC<InputProps> = ({
   cpfOrCnpj,
   birthDate,
   phone,
+  valueText,
 }) => {
   const { fontScale } = useWindowDimensions();
   const styles = makeStyles(fontScale);
@@ -33,6 +35,7 @@ export const Input: React.FC<InputProps> = ({
   const handleValue = async (value: string) => {
     setValue(value);
     onChange(value);
+    valueText = value;
   };
 
   if (hide) return;
@@ -48,7 +51,7 @@ export const Input: React.FC<InputProps> = ({
         style={styles.input}
         placeholder={placeholder}
         placeholderTextColor={color.ofuscatedBlack}
-        value={value}
+        value={valueText}
       />
     );
 
@@ -63,7 +66,7 @@ export const Input: React.FC<InputProps> = ({
         style={styles.input}
         placeholder={placeholder}
         placeholderTextColor={color.ofuscatedBlack}
-        value={value}
+        value={valueText}
       />
     );
 
@@ -78,7 +81,7 @@ export const Input: React.FC<InputProps> = ({
         style={styles.input}
         placeholder={placeholder}
         placeholderTextColor={color.ofuscatedBlack}
-        value={value}
+        value={valueText}
       />
     );
 
@@ -94,7 +97,7 @@ export const Input: React.FC<InputProps> = ({
         style={styles.input}
         placeholder={placeholder}
         placeholderTextColor={color.ofuscatedBlack}
-        value={value}
+        value={valueText}
       />
     );
 
@@ -109,7 +112,7 @@ export const Input: React.FC<InputProps> = ({
         style={styles.input}
         placeholder={placeholder}
         placeholderTextColor={color.ofuscatedBlack}
-        value={value}
+        value={valueText}
       />
     );
 
@@ -119,7 +122,7 @@ export const Input: React.FC<InputProps> = ({
       style={styles.input}
       placeholder={placeholder}
       placeholderTextColor={color.ofuscatedBlack}
-      value={value}
+      value={valueText}
       onChangeText={(t: any) => handleValue(t)}
       secureTextEntry={password}
     />
