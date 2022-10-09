@@ -1,5 +1,4 @@
 import React from 'react';
-import { Text } from '@rneui/themed';
 import { Image, Pressable, useWindowDimensions } from 'react-native';
 import { makeStyles } from './styles';
 

@@ -66,6 +66,13 @@ export const makeStyles = (fontScale: number) =>
       fontSize: 15 / fontScale,
       color: color.ofuscatedBlack,
     },
+    icon: {
+      display: 'flex',
+      alignSelf: 'flex-end',
+      height: 24,
+      width: 24,
+      marginRight: 35
+    },
     successModalContainer: {
       display: 'flex',
       alignItems: 'center',
