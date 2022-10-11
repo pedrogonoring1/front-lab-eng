@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text } from '@rneui/themed';
+import { Text } from 'react-native';
 import { Pressable, useWindowDimensions, View, Image } from 'react-native';
 import { Modal, Portal, Snackbar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';

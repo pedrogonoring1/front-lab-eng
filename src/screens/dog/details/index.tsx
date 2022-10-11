@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text } from '@rneui/themed';
+import { Text } from 'react-native';
 import { Pressable, useWindowDimensions, View, Image, ScrollView } from 'react-native';
 import { Modal, Portal, Snackbar, Title } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
@@ -11,6 +11,7 @@ import { makeStyles } from './styles';
 import { Button } from '../../../components/button';
 import { CardImg } from '../../../components/cardImg';
 import { api } from '../../../services/api';
+
 
 type dogDetailsScreen = StackNavigationProp<RootStackParamList, 'DogDetails'>;
 
@@ -47,7 +48,8 @@ export const DogDetails: React.FC = () => {
         </View>
       </View>
 
-      <View>
+      <View>        
+        <Image style={styles.icon} source={require('../../../assets/icons/edit.png')} />
         <Title style={styles.subtitle}>Sexo: macho</Title>
         <Title style={styles.subtitle}>Idade: 2 anos</Title>
         <Title style={styles.subtitle}>Tamanho: M</Title>
